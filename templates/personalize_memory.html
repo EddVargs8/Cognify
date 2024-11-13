@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizar Recuerdos - Cognify</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .content-container {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .form-section {
+            flex: 1;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .info-section {
+            flex: 0.5;
+            padding: 1.5rem;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.1rem;
+        }
+        .btn-submit {
+            margin-top: 1rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cognify</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container content-container">
+        
+        <!-- Information Section -->
+        <aside class="info-section">
+            <h4>Información del Delincuente</h4>
+            <p><strong>Nombre:</strong> {{ criminal.name }}</p>
+            <p>Aquí puede seleccionar y personalizar los recuerdos que desea implantar en {{ criminal.name }}.</p>
+        </aside>
+        
+        <!-- Form Section -->
+        <section class="form-section">
+            <h1>Personalizar Recuerdos</h1>
+            <form method="post">
+                {% csrf_token %}
+                <p>Seleccione un recuerdo para implantar:</p>
+                {% for option in memory_options %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="memory_choice" value="{{ option }}" required>
+                        <label class="form-check-label">Nivel de empatía, arrepentimiento y consciencia: {{ forloop.counter }} {{ option|linebreaks }}</label>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary btn-submit">Guardar Recuerdo</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
