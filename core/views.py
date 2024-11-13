@@ -7,7 +7,7 @@ from .models import Criminal, Memory
 from .forms import CriminalForm, MemoryForm
 
 def home(request):
-    criminals = Criminal.objects.all()
+    criminals = Criminal.objects.all() 
     return render(request, 'home.html', {'criminals': criminals})
 
 def add_criminal(request):

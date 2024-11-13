@@ -6,7 +6,12 @@ class CriminalForm(forms.ModelForm):
     class Meta:
         model = Criminal
         fields = ['name', 'crime_type', 'sentence_type']
-
+        labels = {
+            'name': 'Nombre del Criminal',
+            'crime_type': 'Tipo de Crimen',
+            'sentence_type': 'Tipo de Sentencia'
+        }
+        
 class MemoryForm(forms.ModelForm):
     class Meta:
         model = Memory
